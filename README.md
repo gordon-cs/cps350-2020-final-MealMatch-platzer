@@ -7,4 +7,8 @@ This app aims to help users decide what nearby restaurant to eat at. The target 
 
 This system helps groups decide because each person can make decision about what they want without worrying about forcing their opinions on the other members of the group. Taking each option one at a time also helps prevent analysis paralysis by confronting the user with a simple yes or no. This allows them to make a simpler, quikcer decision instead of having to weigh all the options against each other simultaneously.
 
-### Use Cases
+### User Stories
+
+* A user can't decide where to eat, so he opens the app, starts a table with a search radius of 10 miles, and swipes no on several restaurants until the app presents a new italian place he decides to try.
+
+* A user wants to reach consensus on where her group of 5 colleagues should go for lunch. She opens the app and starts a table. Her colleagues join her table and they begin swiping through restaurants.  4 of her colleagues like a sushi place nearby, but she can't eat sushi so she rejects it and they keep swiping until they all agree on a burger joint in the area.
