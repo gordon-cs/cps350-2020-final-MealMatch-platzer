@@ -3,9 +3,8 @@ by Evan Platzer
 
 ## Project Proposal
 
-### Target Users
+This app aims to help users decide what nearby restaurant to eat at. The target users are anyone who frequently has difficulty choosing a restaurant to eat at, singly and especially as a group. NoReservations finds all restaurants nearby (within a radius chosen by the user) and displays them one at a time, letting the user swipe yes to like a restaurant or no to discard it. The user can view their liked restaurants, and they will be suggested restaurants that other members of their group have liked. 
 
-This app aims to help everyone who has the recurring difficulty of deciding where to eat with a group. When sharing a meal with a group, people commonly reach a stalemate where everyone wants to be polite, so no one makes a decision about where to eat for fear of forcing their opinion onto others. NoReservations helps solve this problem by letting each person select restaurants they'd enjoy until the group has agreed on a particular spot. 
+This system helps groups decide because each person can make decision about what they want without worrying about forcing their opinions on the other members of the group. Taking each option one at a time also helps prevent analysis paralysis by confronting the user with a simple yes or no. This allows them to make a simpler, quikcer decision instead of having to weigh all the options against each other simultaneously.
 
 ### Use Cases
-
