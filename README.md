@@ -14,3 +14,53 @@ This system helps groups decide because each person can make decision about what
 * A user wants to reach consensus on where her group of 5 colleagues should go for lunch. She opens the app and starts a table. Her colleagues join her table and they begin swiping through restaurants.  4 of her colleagues like a sushi place nearby, but she can't eat sushi so she rejects it and they keep swiping until they all agree on a burger joint in the area.
 
 * A user wants a say in where his group is going to eat, so he joins his group's table and begins swiping until they find a good match.
+
+### UI
+
+The UI of NoReservations is broken into six pages:
+
+1. The home page, which links to the table host and the table selection page.s
+
+![The home page](/Storyboard/home.jpg)
+
+2. The table host page, which links to the choose restuarant page.
+
+![The table host page](/Storyboard/host.jpg)
+
+3. The table selection page, which links to the table guest page.
+
+![The table selection page](/Storyboard/tables.jpg)
+
+4. The table guest page, which links to the choose restaurant page.
+
+![The table guest page](/Storyboard/table_guest.jpg)
+
+5. The choose restaurant page, which is accessible from both the table host and table guest pages.
+
+![The choose restaurant page](/Storyboard/choose_restaurant.jpg)
+
+6. Finally, the settings page, which is accessible via the settings button from every other page. The settings page is only needed for behaviors beyond those in the prototype, and so is not going to be implemented in the prototype.
+
+![The settings page](/Storyboard/settings.jpg)
+
+### Prototype
+
+The prototype of this application, which is scheduled to be completed by April 24, 2020, should include the following:
+
+* The ability to host a table, visible to other users of the app.
+* The ability to set the search radius of a table that the user is hosting.
+* The ability to see a table currently being hosted by another user of the app.
+* The ability to join another user's table as a guest.
+* The ability for all users at a table to choose restaurants.
+  * The ability to swipe through restaurants in the search radius of the table, based on the host's location.
+  * The ability to see any restaurant that has been liked by every user at the table.
+
+### APIs
+
+NoReservations makes use of two APIs and one iOS Framework:
+
+1. The [Google Places API](https://developers.google.com/places/web-service/intro) - used to find all restaurants nearby the host user, via the Nearby Place Search route.
+
+2. The [Google Maps API](https://developers.google.com/maps/documentation/ios-sdk/intro) - used to display a map with a marker for the restaurant that the using is currently deciding on.
+
+3. The [Apple Multipeer Connectivity Framework](https://developer.apple.com/documentation/multipeerconnectivity) - used to connect users in the form of "tables".
