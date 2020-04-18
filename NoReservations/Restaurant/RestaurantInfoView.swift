@@ -10,7 +10,19 @@ import SwiftUI
 
 struct RestaurantInfoView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading) {
+            Spacer()
+            Text("The Castle: A Board Game Cafe")
+                .font(.title)
+                .fontWeight(.regular)
+                .foregroundColor(.white)
+            Text("Beverly")
+                .font(.subheadline)
+                .fontWeight(.light)
+                .foregroundColor(.white)
+            
+        }
+    .padding()
     }
 }
 

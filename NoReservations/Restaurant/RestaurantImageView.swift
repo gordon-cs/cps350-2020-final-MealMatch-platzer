@@ -10,7 +10,21 @@ import SwiftUI
 
 struct RestaurantImageView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Image("castle_map")
+        .resizable()
+        .overlay (
+            Rectangle()
+                .fill (
+                    LinearGradient(
+                        gradient: Gradient(
+                            colors: [.clear, .black]
+                        ),
+                        startPoint: .center,
+                        endPoint: .bottom)
+                )
+                .clipped()
+        )
+        .cornerRadius(10, antialiased: true)
     }
 }
 
