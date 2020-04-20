@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A54CD33E2443F59E0098C4B9 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CD33D2443F59E0098C4B9 /* GoogleMapView.swift */; };
 		A55DEDE5244DF2040037B5D1 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55DEDE4244DF2040037B5D1 /* NavigationBarModifier.swift */; };
+		A55DEDE7244E19AB0037B5D1 /* HostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55DEDE6244E19AB0037B5D1 /* HostView.swift */; };
 		A5802A14244933430079908A /* RestaurantMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A13244933430079908A /* RestaurantMapView.swift */; };
 		A5802A1624493A490079908A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A1524493A490079908A /* ButtonView.swift */; };
 		A5802A1B2449431F0079908A /* TableHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A1A2449431F0079908A /* TableHostView.swift */; };
@@ -37,6 +38,7 @@
 		83A0F0CC98C70890152507A7 /* Pods-NoReservations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoReservations.debug.xcconfig"; path = "Target Support Files/Pods-NoReservations/Pods-NoReservations.debug.xcconfig"; sourceTree = "<group>"; };
 		A54CD33D2443F59E0098C4B9 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		A55DEDE4244DF2040037B5D1 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		A55DEDE6244E19AB0037B5D1 /* HostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostView.swift; sourceTree = "<group>"; };
 		A5802A13244933430079908A /* RestaurantMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMapView.swift; sourceTree = "<group>"; };
 		A5802A1524493A490079908A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		A5802A1A2449431F0079908A /* TableHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHostView.swift; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				A5FFE410244B54CD005355EC /* MainMenuView.swift */,
+				A55DEDE6244E19AB0037B5D1 /* HostView.swift */,
 				A5E693B52443B055004B9604 /* Restaurant Views */,
 				A5FFE424244BE5FE005355EC /* Table Views */,
 				A5FFE414244B5825005355EC /* Supporting Views */,
@@ -320,6 +323,7 @@
 				A5FFE427244BE676005355EC /* GuestData.swift in Sources */,
 				A5FFE418244BCB4B005355EC /* TableGuestView.swift in Sources */,
 				A5FFE41C244BDB6B005355EC /* InviteGuestsView.swift in Sources */,
+				A55DEDE7244E19AB0037B5D1 /* HostView.swift in Sources */,
 				A5802A1B2449431F0079908A /* TableHostView.swift in Sources */,
 				A5C721302443DC3700FA3015 /* RestaurantImageView.swift in Sources */,
 				A5FFE411244B54CD005355EC /* MainMenuView.swift in Sources */,

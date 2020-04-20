@@ -58,9 +58,6 @@ struct InviteGuestsView: View {
             self.tableService.delegate = self
             self.tableService.createTable()
         }
-        .onDisappear() {
-            self.tableService.closeTable()
-        }
     }
 }
 

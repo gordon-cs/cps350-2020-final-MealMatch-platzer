@@ -77,9 +77,6 @@ struct JoinTableView: View {
             self.tableService.delegate = self
             self.tableService.searchForTable()
         }
-        .onDisappear() {
-            self.tableService.stopSearchingForTable()
-        }
         .navigationBarTitle("Join Table")
     }
 }
