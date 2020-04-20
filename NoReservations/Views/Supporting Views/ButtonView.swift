@@ -11,11 +11,12 @@ import SwiftUI
 struct ButtonView: View {
     @Environment(\.isEnabled) var isEnabled
     var buttonText: String
+    var buttonColor: Color
     
     var body: some View {
         Text(buttonText)
         .padding()
-            .background(isEnabled ? Color.blue : Color.gray)
+            .background(isEnabled ? buttonColor : Color.gray)
         .foregroundColor(Color.white)
         .cornerRadius(40)
         .padding()
@@ -25,6 +26,6 @@ struct ButtonView: View {
 
 struct ButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ButtonView(buttonText: "Click Here")
+        ButtonView(buttonText: "Click Here", buttonColor: Color("AppBlue"))
     }
 }

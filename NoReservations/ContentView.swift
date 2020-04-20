@@ -12,13 +12,15 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             MainMenuView()
+            
         }
+        .navigationBarColor(UIColor(named: "AppBlue"))
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-        .environmentObject(UserData())
+            .environmentObject(UserData())
     }
 }
