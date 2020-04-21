@@ -15,6 +15,7 @@ struct TableGuestView: View {
     
     var body: some View {
         Text("Welcome to \(hostName)'s table!")
+            .foregroundColor(Color("AppBlue"))
         .navigationBarTitle("\(hostName)'s Table")
             .onAppear() {
                 self.tableService.delegate = self

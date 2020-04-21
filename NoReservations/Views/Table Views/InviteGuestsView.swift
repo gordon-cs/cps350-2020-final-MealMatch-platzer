@@ -11,26 +11,18 @@ import MultipeerConnectivity
 
 struct InviteGuestsView: View {
     @State private var guests: [Guest] = []
-    var userName: String
-    let tableService: TableService
-    
-    init(userName: String) {
-        self.userName = userName
-        self.tableService = TableService(userName: userName)
-    }
+    @EnvironmentObject var userData: UserData
+    @EnvironmentObject var tableService: TableService
     
     func displayGuestState(guest: Guest) -> AnyView {
         switch guest.state {
         case MCSessionState.connected:
-            return AnyView(Text("Connected"))
+            return AnyView(Text("Connected").foregroundColor(Color("AppBlue")))
         case MCSessionState.connecting:
-            return AnyView(Text("Connecting"))
+            return AnyView(Text("Connecting").foregroundColor(Color("AppBlue")).fontWeight(.bold))
         default:
-            return AnyView(Button(action: {
-                self.tableService.inviteGuest(guestID: guest.id, hostName: self.userName)
-            }) {
-                Text("Invite")
-                    .foregroundColor(Color.blue)
+            return AnyView(ButtonView(buttonText: "Invite", buttonColor: Color("AppBlue")).onTapGesture {
+                self.tableService.inviteGuest(guestID: guest.id, hostName: self.userData.name)
             })
         }
     }
@@ -40,6 +32,9 @@ struct InviteGuestsView: View {
             List(guests) { guest in
                 HStack {
                     Text(guest.name)
+                        .foregroundColor(Color("AppBlue"))
+                        .fontWeight(.bold)
+                    
                     
                     Spacer()
                     
@@ -48,12 +43,7 @@ struct InviteGuestsView: View {
             }
             
             Spacer()
-            
-            NavigationLink(destination: TableHostView(guests: self.$guests).environmentObject(tableService)) {
-                ButtonView(buttonText: "Start Table", buttonColor: Color("AppBlue"))
-            }
         }
-        .navigationBarTitle("Invite Table Guests")
         .onAppear() {
             self.tableService.delegate = self
             self.tableService.createTable()
@@ -83,14 +73,6 @@ extension InviteGuestsView: TableServiceDelegate {
         }
     }
     
-    func peerConnecting(manager: TableService, peerID: MCPeerID) {
-        self.guests.first(where: {$0.id == peerID})?.state = MCSessionState.connecting
-    }
-    
-    func peerDisconnected(manager: TableService, peerID: MCPeerID) {
-        self.guests.first(where: {$0.id == peerID})?.state = MCSessionState.notConnected
-    }
-    
     func messageReceived(manager: TableService, message: String) { }
     
     
@@ -98,6 +80,6 @@ extension InviteGuestsView: TableServiceDelegate {
 
 struct InviteGuestsView_Previews: PreviewProvider {
     static var previews: some View {
-        InviteGuestsView(userName: "Test User")
+        InviteGuestsView().environmentObject(UserData()).environmentObject(TableService(userName: "Test User"))
     }
 }

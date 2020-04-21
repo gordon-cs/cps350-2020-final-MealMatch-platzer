@@ -15,11 +15,11 @@ struct ButtonView: View {
     
     var body: some View {
         Text(buttonText)
-        .padding()
+            .padding()
             .background(isEnabled ? buttonColor : Color.gray)
-        .foregroundColor(Color.white)
-        .cornerRadius(40)
-        .padding()
+            .foregroundColor(Color.white)
+            .cornerRadius(40)
+            .padding()
             .shadow(radius: isEnabled ? 5 : 0)
     }
 }

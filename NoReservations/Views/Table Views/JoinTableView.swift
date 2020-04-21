@@ -47,11 +47,15 @@ struct JoinTableView: View {
             
             if(invitations.isEmpty) {
                 Text("Waiting for invitation from host")
+                    .font(.title)
+                    .fontWeight(.bold)
+                .foregroundColor(Color("AppBlue"))
             }
             else {
                 List(invitations.indices, id: \.self) { index in
                     HStack {
                         Text(self.invitations[index].hostName)
+                            .foregroundColor(Color("AppBlue"))
                             .padding()
                         
                         Spacer()

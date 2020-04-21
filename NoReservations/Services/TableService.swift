@@ -126,15 +126,13 @@ extension TableService : MCNearbyServiceBrowserDelegate {
         NSLog("%@", "didNotStartBrowsingForPeers: \(error)")
     }
     
-    //    Update SelectGuestsView
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        NSLog("%@", "foundPeer: \(info?["Name"] ?? peerID.displayName)")
+        //        NSLog("%@", "foundPeer: \(info?["Name"] ?? peerID.displayName)")
         self.delegate?.guestDiscovered(manager: self, guestID: peerID, guestName: info?["Name"] ?? peerID.displayName)
-        //        browser.invitePeer(peerID, to: self.session, withContext: nil, timeout: 10)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        NSLog("%@", "lostPeer: \(peerID)")
+        //        NSLog("%@", "lostPeer: \(peerID)")
         self.delegate?.guestLost(manager: self, guestID: peerID)
     }
 }
@@ -145,17 +143,26 @@ extension TableService : MCNearbyServiceAdvertiserDelegate {
         NSLog("%@", "didNotStartAdvertisingPeer: \(error)")
     }
     
-    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
+    func advertiser(_
+        advertiser: MCNearbyServiceAdvertiser,
+                    didReceiveInvitationFromPeer peerID: MCPeerID,
+                    withContext context: Data?,
+                    invitationHandler: @escaping (Bool, MCSession?) -> Void
+    ) {
+        //        NSLog("%@", "didReceiveInvitationFromPeer \(peerID)")
         let hostName = String(decoding: context!, as: UTF8.self)
-        self.delegate?.receivedInvitation(manager: self, hostName: hostName, invitationHandler: invitationHandler)
+        self.delegate?.receivedInvitation(
+            manager: self,
+            hostName: hostName,
+            invitationHandler: invitationHandler
+        )
     }
 }
 
 extension TableService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
+        //        NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
         self.delegate?.peerChangedState(manager: self, peerID: peerID, state: state)
     }
     

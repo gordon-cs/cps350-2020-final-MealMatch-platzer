@@ -11,7 +11,6 @@ import MultipeerConnectivity
 
 struct TableHostView: View {
     @State private var searchRadius = 1.0
-    @Binding var guests: [Guest]
     @EnvironmentObject var tableService: TableService
     @EnvironmentObject var userData: UserData
     
@@ -20,14 +19,20 @@ struct TableHostView: View {
             Form{
                 Section{
                     Text("Search Radius: \(Int(searchRadius)) km")
+                    .foregroundColor(Color("AppBlue"))
+                        .font(.title)
+                    
                     Slider(value: $searchRadius, in: 1...50)
+                    .accentColor(Color("AppBlue"))
                 }
                 
                 Section {
                     Text("Guests:")
-                    List(guests) { guest in
-                        Text(guest.name)
-                    }
+                    .foregroundColor(Color("AppBlue"))
+                        .font(.title)
+                        .fontWeight(.bold)
+                    
+                    InviteGuestsView()
                 }
                 
             }
@@ -36,9 +41,6 @@ struct TableHostView: View {
             NavigationLink(destination: RestaurantCardView()) {
                 ButtonView(buttonText: "Choose Restaurant", buttonColor: Color("AppBlue"))
             }
-        }
-        .onAppear() {
-            self.tableService.delegate = self
         }
         .navigationBarTitle("\(userData.name)'s Table")
     }
@@ -66,7 +68,7 @@ extension TableHostView: TableServiceDelegate {
 
 struct TableHostView_Previews: PreviewProvider {
     static var previews: some View {
-        TableHostView(guests: .constant([Guest(id: MCPeerID(displayName: "Test User"), name: "Test User")]))
+        TableHostView()
             .environmentObject(UserData())
             .environmentObject(TableService(userName: "Test"))
     }

@@ -7,23 +7,43 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MainMenuView: View {
     @EnvironmentObject var userData: UserData
     
+    @State var keyboardHeight: CGFloat = 0
+    
     var body: some View {
         VStack {
             
+            if self.keyboardHeight == 0 {
+                Image("logo")
+                .resizable()
+                .scaledToFit()
+            }
+                        
+            HStack {
+                Text("Name:")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color("AppBlue"))
+                
+                TextField("Enter name", text: $userData.name)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .foregroundColor(Color("AppBlue"))
+                    
+            }
+            .padding()
+                .padding(.bottom, keyboardHeight)
+            .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
+            
             Spacer()
             
-            TextField("Name:", text: $userData.name)
-                .padding()
-                .foregroundColor(Color("AppDarkBlue"))
-            
-            
-            Spacer()
-            
-            NavigationLink(destination: InviteGuestsView(userName: userData.name)) {
+            NavigationLink(
+                destination: TableHostView()
+                    .environmentObject(TableService(userName: userData.name))
+            ) {
                 ButtonView(buttonText: "Host a Table", buttonColor: Color("AppBlue"))
             }
             .disabled(userData.name.isEmpty)
