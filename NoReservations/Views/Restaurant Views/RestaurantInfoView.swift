@@ -9,25 +9,21 @@
 import SwiftUI
 
 struct RestaurantInfoView: View {
+    var place: GooglePlace
+    
     var body: some View {
         VStack(alignment: .leading) {
             Spacer()
-            Text("The Castle: A Board Game Cafe")
+            Text(place.name)
                 .font(.title)
                 .fontWeight(.regular)
                 .foregroundColor(.white)
-            Text("Beverly")
+            Text(place.address)
                 .font(.subheadline)
                 .fontWeight(.light)
                 .foregroundColor(.white)
             
         }
     .padding()
-    }
-}
-
-struct RestaurantInfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantInfoView()
     }
 }

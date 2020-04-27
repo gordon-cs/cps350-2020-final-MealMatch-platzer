@@ -12,13 +12,22 @@ import MultipeerConnectivity
 struct TableGuestView: View {
     @EnvironmentObject var tableService: TableService
     var hostName: String
+    @State var places: [GooglePlace] = []
     
     var body: some View {
-        Text("Welcome to \(hostName)'s table!")
-            .foregroundColor(Color("AppBlue"))
+        VStack {
+            if (self.places.isEmpty) {
+                Text("Welcome to \(hostName)'s table!")
+                .foregroundColor(Color("AppBlue"))
+            }
+            
+            else {
+                ChooseRestaurantsView(places: places)
+            }
+        }
         .navigationBarTitle("\(hostName)'s Table")
-            .onAppear() {
-                self.tableService.delegate = self
+        .onAppear() {
+            self.tableService.delegate = self
         }
     }
 }
@@ -34,8 +43,8 @@ extension TableGuestView: TableServiceDelegate {
         
     }
     
-    func messageReceived(manager: TableService, message: String) {
-        
+    mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
+        self.places = places
     }
     
     

@@ -6,22 +6,20 @@
 //  Copyright © 2020 Evan Platzer. All rights reserved.
 //
 
+import CoreLocation
 import SwiftUI
 
 struct RestaurantCardView: View {
+    @Binding var places: [GooglePlace]
+    
     var body: some View {
         ZStack(alignment: .leading) {
-            RestaurantMapView()
-            RestaurantInfoView()
+            RestaurantMapView(place: self.places[0])
+            RestaurantInfoView(place: self.places[0])
         }
-        .shadow(radius: 2)
-        .padding(.horizontal)
+    .padding(10)
+        .shadow(radius: 5)
+        .cornerRadius(10)
         .navigationBarTitle("Choose Restaurants", displayMode: .inline)
-    }
-}
-
-struct RestaurantCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantCardView()
     }
 }

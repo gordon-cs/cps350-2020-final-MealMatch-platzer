@@ -12,27 +12,24 @@ import GoogleMaps
 
 struct GoogleMapView: UIViewRepresentable {
     
+    var place: GooglePlace
+    
     let marker : GMSMarker = GMSMarker()
     
     func makeUIView(context: Self.Context) -> GMSMapView {
-        let camera = GMSCameraPosition.camera(withLatitude: 47.610160, longitude: -122.342480, zoom: 6.0)
+        let camera = GMSCameraPosition.camera(withLatitude: place.coordinate.latitude, longitude: place.coordinate.longitude, zoom: 15.0)
         let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         return mapView
     }
     
     func updateUIView(_ mapView: GMSMapView, context: Self.Context) {
-        marker.position = CLLocationCoordinate2D(latitude: 47.610160, longitude: -122.342480)
-        marker.title = "Starbucks"
-        marker.snippet = "Seattle"
+        mapView.clear()
+        marker.position = place.coordinate
+        marker.title = place.name
+        marker.snippet = place.address
         marker.map = mapView
     }
     
     
-}
-
-struct GoogleMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        GoogleMapView()
-    }
 }

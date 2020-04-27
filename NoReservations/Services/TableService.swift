@@ -33,8 +33,7 @@ protocol TableServiceDelegate {
         state: MCSessionState
     )
     
-    //    Refactor to receive restaurant data
-    func messageReceived(manager: TableService, message: String)
+    mutating func placesReceived(manager: TableService, places: [GooglePlace])
 }
 
 class TableService: NSObject, ObservableObject {
@@ -95,12 +94,15 @@ class TableService: NSObject, ObservableObject {
         self.serviceAdvertiser.stopAdvertisingPeer()
     }
     
-    func send(exchangeData: String){
-        NSLog("%@", "sendData: \(exchangeData) to \(session.connectedPeers.count) peers,\(session.connectedPeers.self)")
+    func sendInitialPlaces(places: [GooglePlace]){
+        NSLog("%@", "sendData: \(places) to \(session.connectedPeers.count) peers,\(session.connectedPeers.self)")
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(places)
+        
         if session.connectedPeers.count > 0 {
             do {
                 try self.session.send(
-                    exchangeData.data(using: .utf8)!,
+                    data,
                     toPeers: session.connectedPeers,
                     with: .reliable
                 )
@@ -169,9 +171,10 @@ extension TableService : MCSessionDelegate {
     //    Update to receive restaurant data
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
-        let str = String(data: data, encoding: .utf8)!
-        NSLog("%@", str)
-        self.delegate?.messageReceived(manager: self, message: str)
+        let decoder = JSONDecoder()
+        let places = try! decoder.decode([GooglePlace].self, from: data)
+        NSLog("%@", "\(places)")
+        self.delegate?.placesReceived(manager: self, places: places)
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

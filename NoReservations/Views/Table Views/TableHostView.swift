@@ -10,39 +10,43 @@ import SwiftUI
 import MultipeerConnectivity
 
 struct TableHostView: View {
-    @State private var searchRadius = 1.0
     @EnvironmentObject var tableService: TableService
+    @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var userData: UserData
+    let dataProvider = GoogleDataProvider()
+    @State var places: [GooglePlace] = []
     
     var body: some View {
         VStack {
             Form{
-                Section{
-                    Text("Search Radius: \(Int(searchRadius)) km")
-                    .foregroundColor(Color("AppBlue"))
-                        .font(.title)
-                    
-                    Slider(value: $searchRadius, in: 1...50)
-                    .accentColor(Color("AppBlue"))
-                }
-                
                 Section {
                     Text("Guests:")
-                    .foregroundColor(Color("AppBlue"))
+                        .foregroundColor(Color("AppBlue"))
                         .font(.title)
                         .fontWeight(.bold)
-                    
+
                     InviteGuestsView()
                 }
                 
             }
             Spacer()
             
-            NavigationLink(destination: RestaurantCardView()) {
+            NavigationLink(destination: ChooseRestaurantsView(places: places).environmentObject(tableService)) {
                 ButtonView(buttonText: "Choose Restaurant", buttonColor: Color("AppBlue"))
             }
+            .disabled(self.places.isEmpty)
         }
         .navigationBarTitle("\(userData.name)'s Table")
+        .onAppear() {
+            if (self.places.isEmpty) {
+                self.tableService.delegate? = self
+                
+                self.dataProvider.fetchPlaces(near: self.locationManager.location!.coordinate) { places in
+                    print("Fetch Places call returned with places \(places)")
+                    self.places = places
+                }
+            }
+        }
     }
 }
 
@@ -59,8 +63,7 @@ extension TableHostView: TableServiceDelegate {
         }
     }
     
-    func messageReceived(manager: TableService, message: String) {
-        
+    mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
     }
     
     

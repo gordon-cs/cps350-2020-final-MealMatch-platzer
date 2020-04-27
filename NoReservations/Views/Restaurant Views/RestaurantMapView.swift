@@ -9,8 +9,10 @@
 import SwiftUI
 
 struct RestaurantMapView: View {
+    var place: GooglePlace
+    
     var body: some View {
-        GoogleMapView()
+        GoogleMapView(place: place)
         .overlay(
             Rectangle()
             .fill (
@@ -24,11 +26,5 @@ struct RestaurantMapView: View {
                 .clipped()
         )
         .cornerRadius(10, antialiased: true)
-    }
-}
-
-struct RestaurantMapView_Previews: PreviewProvider {
-    static var previews: some View {
-        RestaurantMapView()
     }
 }

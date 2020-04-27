@@ -104,8 +104,7 @@ extension JoinTableView: TableServiceDelegate {
         
     }
     
-    func messageReceived(manager: TableService, message: String) {
-        
+    mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
     }
 }
 

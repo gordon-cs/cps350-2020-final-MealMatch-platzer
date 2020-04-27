@@ -12,4 +12,6 @@ import Combine
 
 class UserData: ObservableObject {
     @Published var name: String = ""
+    @Published var searchRadius: Double = 1.0
+    @Published var units: String = "km"
 }
