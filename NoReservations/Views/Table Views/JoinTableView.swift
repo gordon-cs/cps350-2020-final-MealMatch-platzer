@@ -10,6 +10,7 @@ import SwiftUI
 import MultipeerConnectivity
 
 struct JoinTableView: View {
+    @EnvironmentObject var tableData: TableData
     @State private var invitations: [(hostName: String, callback: (Bool, MCSession?)-> Void)] = []
     @State private var pendingInvitations: Bool = false
     @State private var joinedTable: Int? = 0
@@ -37,19 +38,19 @@ struct JoinTableView: View {
     var body: some View {
         VStack {
             
-            NavigationLink(destination: TableGuestView(
-                hostName: self.tableHost)
-                .environmentObject(self.tableService),
-                           tag: 1,
-                           selection: self.$joinedTable) {
-                            EmptyView()
+            NavigationLink(
+                destination: TableGuestView(hostName: self.tableHost)
+                    .environmentObject(self.tableService),
+                tag: 1,
+                selection: self.$joinedTable) {
+                    EmptyView()
             }
             
             if(invitations.isEmpty) {
                 Text("Waiting for invitation from host")
                     .font(.title)
                     .fontWeight(.bold)
-                .foregroundColor(Color("AppBlue"))
+                    .foregroundColor(Color("AppBlue"))
             }
             else {
                 List(invitations.indices, id: \.self) { index in
@@ -73,7 +74,7 @@ struct JoinTableView: View {
                     }
                     
                 }
-            .accentColor(Color("AppBlue"))
+                .accentColor(Color("AppBlue"))
             }
             
         }
@@ -86,6 +87,13 @@ struct JoinTableView: View {
 }
 
 extension JoinTableView: TableServiceDelegate {
+    func placesReceived(manager: TableService, places: [GooglePlace]) {
+        self.tableData.receivedPlaces = places
+    }
+    
+    func likedPlaceReceived(manager: TableService, place: GooglePlace) {
+        self.tableData.addLikedPlace(place: place)
+    }
     
     func guestDiscovered(manager: TableService, guestID: MCPeerID, guestName: String) {
         
@@ -101,10 +109,11 @@ extension JoinTableView: TableServiceDelegate {
     }
     
     func peerChangedState(manager: TableService, peerID: MCPeerID, state: MCSessionState) {
-        
-    }
-    
-    mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
+        if state == MCSessionState.connected {
+            DispatchQueue.main.async {
+                self.tableData.numberOfGuests = 1 + self.tableService.session.connectedPeers.count
+            }
+        }
     }
 }
 

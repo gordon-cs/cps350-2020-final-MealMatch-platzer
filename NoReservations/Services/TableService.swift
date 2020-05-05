@@ -19,7 +19,10 @@ protocol TableServiceDelegate {
         guestName: String
     )
     
-    func guestLost(manager: TableService, guestID: MCPeerID)
+    func guestLost(
+        manager: TableService,
+        guestID: MCPeerID
+    )
     
     func receivedInvitation(
         manager: TableService,
@@ -33,7 +36,15 @@ protocol TableServiceDelegate {
         state: MCSessionState
     )
     
-    mutating func placesReceived(manager: TableService, places: [GooglePlace])
+    mutating func placesReceived(
+        manager: TableService,
+        places: [GooglePlace]
+    )
+    
+    func likedPlaceReceived(
+        manager: TableService,
+        place: GooglePlace
+    )
 }
 
 class TableService: NSObject, ObservableObject {
@@ -94,10 +105,31 @@ class TableService: NSObject, ObservableObject {
         self.serviceAdvertiser.stopAdvertisingPeer()
     }
     
-    func sendInitialPlaces(places: [GooglePlace]){
+    func sendInitialPlaces(places: [GooglePlace]) {
         NSLog("%@", "sendData: \(places) to \(session.connectedPeers.count) peers,\(session.connectedPeers.self)")
         let encoder = JSONEncoder()
         let data = try! encoder.encode(places)
+        
+        if session.connectedPeers.count > 0 {
+            do {
+                try self.session.send(
+                    data,
+                    toPeers: session.connectedPeers,
+                    with: .reliable
+                )
+            }
+                
+            catch let error {
+                NSLog("%@", "Error for sending: \(error)")
+            }
+        }
+    }
+    
+    func sendLikedPlace(place: GooglePlace) {
+        let encoder = JSONEncoder()
+        let data = try! encoder.encode(place)
+        
+        print("sending place \(place)")
         
         if session.connectedPeers.count > 0 {
             do {
@@ -129,12 +161,10 @@ extension TableService : MCNearbyServiceBrowserDelegate {
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, foundPeer peerID: MCPeerID, withDiscoveryInfo info: [String : String]?) {
-        //        NSLog("%@", "foundPeer: \(info?["Name"] ?? peerID.displayName)")
         self.delegate?.guestDiscovered(manager: self, guestID: peerID, guestName: info?["Name"] ?? peerID.displayName)
     }
     
     func browser(_ browser: MCNearbyServiceBrowser, lostPeer peerID: MCPeerID) {
-        //        NSLog("%@", "lostPeer: \(peerID)")
         self.delegate?.guestLost(manager: self, guestID: peerID)
     }
 }
@@ -164,17 +194,21 @@ extension TableService : MCNearbyServiceAdvertiserDelegate {
 extension TableService : MCSessionDelegate {
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
-        //        NSLog("%@", "peer \(peerID) didChangeState: \(state.rawValue)")
         self.delegate?.peerChangedState(manager: self, peerID: peerID, state: state)
     }
     
-    //    Update to receive restaurant data
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
         NSLog("%@", "didReceiveData: \(data)")
         let decoder = JSONDecoder()
-        let places = try! decoder.decode([GooglePlace].self, from: data)
-        NSLog("%@", "\(places)")
-        self.delegate?.placesReceived(manager: self, places: places)
+        do {
+            let places = try decoder.decode([GooglePlace].self, from: data)
+            print("Received places \(places)")
+            self.delegate?.placesReceived(manager: self, places: places)
+        } catch {
+            let place = try! decoder.decode(GooglePlace.self, from: data)
+            print("Received place \(place)")
+            self.delegate?.likedPlaceReceived(manager: self, place: place)
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {

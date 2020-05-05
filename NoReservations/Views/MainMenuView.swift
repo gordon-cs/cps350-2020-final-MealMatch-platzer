@@ -11,6 +11,7 @@ import Combine
 
 struct MainMenuView: View {
     @EnvironmentObject var userData: UserData
+    @EnvironmentObject var tableData: TableData
     
     @State var keyboardHeight: CGFloat = 0
     

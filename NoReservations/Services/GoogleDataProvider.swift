@@ -27,69 +27,64 @@
 /// THE SOFTWARE.
 
 import UIKit
+import SwiftUI
 import CoreLocation
 
 typealias PlacesCompletion = ([GooglePlace]) -> Void
-typealias PhotoCompletion = (UIImage?) -> Void
+//typealias PhotoCompletion = (UIImage?) -> Void
 
 class GoogleDataProvider {
-  private var photosDictionary: [String: UIImage] = [:]
-  private var placesTask: URLSessionDataTask?
-  private var session: URLSession {
-    return URLSession.shared
-  }
-    
-    private var places: [GooglePlace] = []
-
-  func fetchPlaces(
-    near coordinate: CLLocationCoordinate2D,
-    completion: @escaping PlacesCompletion
-  ) -> Void {
-    
-    if (!self.places.isEmpty) {
-        completion(self.places)
-    }
-    print("Fetch places called with coordinates \(coordinate.description)")
-    
-    var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate)&rankby=distance&key=\(googleApiKey)&type=restaurant"
-    urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? urlString
-    
-    guard let url = URL(string: urlString) else {
-        print("fetch places failed to encode URL, returning empty places array")
-      completion([])
-      return
+    private var photosDictionary: [String: UIImage] = [:]
+    private var placesTask: URLSessionDataTask?
+    private var session: URLSession {
+        return URLSession.shared
     }
     
-    if let task = placesTask, task.taskIdentifier > 0 && task.state == .running {
-      task.cancel()
-    }
+    var data: TableData
     
-    placesTask = session.dataTask(with: url) { data, response, _ in
-      guard let data = data else {
-        DispatchQueue.main.async {
-            print("Fetch places returned no data, returning empty places array")
-          completion([])
+    init(tableData: TableData) {
+        self.data = tableData
+    }
+  
+    func fetchPlaces(
+        near coordinate: CLLocationCoordinate2D
+    ) -> Void {
+        
+        if (!self.data.receivedPlaces.isEmpty) {
+            return
         }
-        return
-      }
-      let decoder = JSONDecoder()
-      decoder.keyDecodingStrategy = .convertFromSnakeCase
-      guard let placesResponse = try? decoder.decode(GooglePlace.Response.self, from: data) else {
-        DispatchQueue.main.async {
-          completion([])
+        print("Fetch places called with coordinates \(coordinate.description)")
+        
+        var urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(coordinate)&rankby=distance&key=\(googleApiKey)&type=restaurant"
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? urlString
+        
+        guard let url = URL(string: urlString) else {
+            print("fetch places failed to encode URL, returning empty places array")
+            return
         }
-        return
-      }
-      
-      if let errorMessage = placesResponse.errorMessage {
-        print(errorMessage)
-      }
-      
-      DispatchQueue.main.async {
-        self.places = placesResponse.results
-        completion(placesResponse.results)
-      }
+        
+        if let task = placesTask, task.taskIdentifier > 0 && task.state == .running {
+            task.cancel()
+        }
+        
+        placesTask = session.dataTask(with: url) { data, response, _ in
+            guard let data = data else {
+                return
+            }
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            guard let placesResponse = try? decoder.decode(GooglePlace.Response.self, from: data) else {
+                return
+            }
+            
+            if let errorMessage = placesResponse.errorMessage {
+                print(errorMessage)
+            }
+            
+            DispatchQueue.main.async {
+                self.data.receivedPlaces = placesResponse.results
+            }
+        }
+        placesTask?.resume()
     }
-    placesTask?.resume()
-  }
 }

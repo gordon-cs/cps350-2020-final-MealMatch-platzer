@@ -10,12 +10,12 @@ import CoreLocation
 import SwiftUI
 
 struct RestaurantCardView: View {
-    @Binding var places: [GooglePlace]
+    @EnvironmentObject var tableData: TableData
     
     var body: some View {
         ZStack(alignment: .leading) {
-            RestaurantMapView(place: self.places[0])
-            RestaurantInfoView(place: self.places[0])
+            RestaurantMapView(place: self.tableData.receivedPlaces[0])
+            RestaurantInfoView(place: self.tableData.receivedPlaces[0])
         }
     .padding(10)
         .shadow(radius: 5)

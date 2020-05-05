@@ -13,6 +13,7 @@ struct InviteGuestsView: View {
     @State private var guests: [Guest] = []
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var tableService: TableService
+    @EnvironmentObject var tableData: TableData
     
     func displayGuestState(guest: Guest) -> AnyView {
         switch guest.state {
@@ -52,6 +53,12 @@ struct InviteGuestsView: View {
 }
 
 extension InviteGuestsView: TableServiceDelegate {
+    func placesReceived(manager: TableService, places: [GooglePlace]) {
+    }
+    
+    func likedPlaceReceived(manager: TableService, place: GooglePlace) {
+    }
+    
     func guestDiscovered(manager: TableService, guestID: MCPeerID, guestName: String) {
         self.guests.append(Guest(id: guestID, name: guestName))
     }
@@ -71,12 +78,13 @@ extension InviteGuestsView: TableServiceDelegate {
                 return $0
             }
         }
+        
+        if state == MCSessionState.connected {
+            DispatchQueue.main.async {
+                self.tableData.numberOfGuests = 1 + self.tableService.session.connectedPeers.count
+            }
+        }
     }
-    
-    mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
-    }
-    
-    
 }
 
 struct InviteGuestsView_Previews: PreviewProvider {

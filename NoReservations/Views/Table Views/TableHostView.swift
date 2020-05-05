@@ -13,8 +13,7 @@ struct TableHostView: View {
     @EnvironmentObject var tableService: TableService
     @EnvironmentObject var locationManager: LocationManager
     @EnvironmentObject var userData: UserData
-    let dataProvider = GoogleDataProvider()
-    @State var places: [GooglePlace] = []
+    @EnvironmentObject var tableData: TableData
     
     var body: some View {
         VStack {
@@ -31,26 +30,27 @@ struct TableHostView: View {
             }
             Spacer()
             
-            NavigationLink(destination: ChooseRestaurantsView(places: places).environmentObject(tableService)) {
+            NavigationLink(destination: ChooseRestaurantsView().environmentObject(self.tableService)) {
                 ButtonView(buttonText: "Choose Restaurant", buttonColor: Color("AppBlue"))
             }
-            .disabled(self.places.isEmpty)
+            .disabled(self.tableData.receivedPlaces.isEmpty)
         }
         .navigationBarTitle("\(userData.name)'s Table")
         .onAppear() {
-            if (self.places.isEmpty) {
+            if (self.tableData.receivedPlaces.isEmpty) {
                 self.tableService.delegate? = self
-                
-                self.dataProvider.fetchPlaces(near: self.locationManager.location!.coordinate) { places in
-                    print("Fetch Places call returned with places \(places)")
-                    self.places = places
-                }
+                let dataProvider = GoogleDataProvider(tableData: self.tableData)
+                dataProvider.fetchPlaces(near: self.locationManager.location!.coordinate)
             }
         }
     }
 }
 
 extension TableHostView: TableServiceDelegate {
+    func likedPlaceReceived(manager: TableService, place: GooglePlace) {
+        self.tableData.addLikedPlace(place: place)
+    }
+    
     func guestDiscovered(manager: TableService, guestID: MCPeerID, guestName: String) { }
     
     func guestLost(manager: TableService, guestID: MCPeerID) { }
@@ -58,12 +58,11 @@ extension TableHostView: TableServiceDelegate {
     func receivedInvitation(manager: TableService, hostName: String, invitationHandler: @escaping (Bool, MCSession?) -> Void) { }
     
     func peerChangedState(manager: TableService, peerID: MCPeerID, state: MCSessionState) {
-        if (state == MCSessionState.notConnected) {
-            NSLog("%@", "Lost connection to peer \(peerID)")
-        }
+
     }
     
     mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
+        self.tableData.receivedPlaces = places
     }
     
     
@@ -74,5 +73,6 @@ struct TableHostView_Previews: PreviewProvider {
         TableHostView()
             .environmentObject(UserData())
             .environmentObject(TableService(userName: "Test"))
+            .environmentObject(TableData())
     }
 }

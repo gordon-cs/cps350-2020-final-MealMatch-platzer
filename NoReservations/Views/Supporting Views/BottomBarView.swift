@@ -9,38 +9,64 @@
 import SwiftUI
 
 struct BottomBarView: View {
-    @Binding var places: [GooglePlace]
-    @Binding var liked: [GooglePlace]
+    @EnvironmentObject var tableData: TableData
+    @EnvironmentObject var tableService: TableService
+    @State var showLikedPlaces = false
+    @State var restaurantsToChoose: Bool = true
     
     func likePlace() {
-        self.liked.append(self.places.first!)
-        self.places.removeFirst()
+        self.tableData.addLikedPlace(place: self.tableData.receivedPlaces[0])
+        self.tableService.sendLikedPlace(place: self.tableData.receivedPlaces[0])
+        self.tableData.receivedPlaces.removeFirst()
+        if self.tableData.receivedPlaces.isEmpty {
+            print("Received places empty")
+            self.restaurantsToChoose.toggle()
+        }
     }
     
     func dislikePlace() {
-        self.places.removeFirst()
+        self.tableData.receivedPlaces.removeFirst()
+        if self.tableData.receivedPlaces.isEmpty {
+            print("Received places empty")
+            self.restaurantsToChoose.toggle()
+        }
     }
     
     var body: some View {
         HStack {
-            ButtonView(buttonText: "X", buttonColor: .red)
-                .onTapGesture {
-                    self.dislikePlace()
+            if self.restaurantsToChoose {
+                ButtonView(buttonText: "X", buttonColor: .red)
+                    .onTapGesture {
+                        self.dislikePlace()
+                }
             }
             
             Spacer()
             
-            ButtonView(buttonText: "✓", buttonColor: .green)
+            ButtonView(buttonText: "Recommendations", buttonColor: Color("AppBlue"))
                 .onTapGesture {
-                    self.likePlace()
+                    self.showLikedPlaces.toggle()
+            }
+            .disabled(self.tableData.tableLikedPlaces.isEmpty)
+            
+            Spacer()
+            
+            if self.restaurantsToChoose {
+                ButtonView(buttonText: "✓", buttonColor: .green)
+                    .onTapGesture {
+                        self.likePlace()
+                }
             }
         }
         .padding(.horizontal)
+        .sheet(isPresented: self.$showLikedPlaces) {
+            RecommendedView().environmentObject(self.tableData)
+        }
     }
 }
 
 struct BottomBarView_Previews: PreviewProvider {
     static var previews: some View {
-        BottomBarView(places: .constant([]), liked: .constant([]))
+        BottomBarView()
     }
 }
