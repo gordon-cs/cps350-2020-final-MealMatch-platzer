@@ -27,17 +27,20 @@ struct RecommendedView: View {
             .padding(.horizontal)
             .foregroundColor(.white)
             
-            List(tableData.tableLikedPlaces.indices) { index in
+            List(tableData.tableLikedPlaces, id: \.0.name) { place in
                 HStack {
-                    Text(self.tableData.tableLikedPlaces[index].0.name)
+                    Text(place.0.name)
                     
                     Spacer()
                     
-                    Text("\(self.tableData.tableLikedPlaces[index].1)/\(self.tableData.numberOfGuests)")
+                    Text("\(place.1)/\(self.tableData.numberOfGuests)")
                 }
             }
         }
     .background(Color("AppBlue"))
+        .onAppear() {
+            self.tableData.tableLikedPlaces.sort(by: {$0.1 > $1.1})
+        }
     }
 }
 

@@ -30,16 +30,22 @@ struct InviteGuestsView: View {
     
     var body: some View {
         VStack {
-            List(guests) { guest in
-                HStack {
-                    Text(guest.name)
-                        .foregroundColor(Color("AppBlue"))
-                        .fontWeight(.bold)
-                    
-                    
-                    Spacer()
-                    
-                    self.displayGuestState(guest: guest)
+            if guests.isEmpty {
+                Text("No guests found")
+                    .foregroundColor(Color("AppBlue"))
+                    .fontWeight(.bold)
+            } else {
+                List(guests) { guest in
+                    HStack {
+                        Text(guest.name)
+                            .foregroundColor(Color("AppBlue"))
+                            .fontWeight(.bold)
+                        
+                        
+                        Spacer()
+                        
+                        self.displayGuestState(guest: guest)
+                    }
                 }
             }
             
@@ -57,6 +63,7 @@ extension InviteGuestsView: TableServiceDelegate {
     }
     
     func likedPlaceReceived(manager: TableService, place: GooglePlace) {
+        self.tableData.addLikedPlace(place: place)
     }
     
     func guestDiscovered(manager: TableService, guestID: MCPeerID, guestName: String) {

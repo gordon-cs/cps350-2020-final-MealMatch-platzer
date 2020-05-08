@@ -12,6 +12,7 @@ import Combine
 struct MainMenuView: View {
     @EnvironmentObject var userData: UserData
     @EnvironmentObject var tableData: TableData
+    @EnvironmentObject var locationManager: LocationManager
     
     @State var keyboardHeight: CGFloat = 0
     
@@ -20,10 +21,10 @@ struct MainMenuView: View {
             
             if self.keyboardHeight == 0 {
                 Image("logo")
-                .resizable()
-                .scaledToFit()
+                    .resizable()
+                    .scaledToFit()
             }
-                        
+            
             HStack {
                 Text("Name:")
                     .font(.title)
@@ -31,12 +32,12 @@ struct MainMenuView: View {
                     .foregroundColor(Color("AppBlue"))
                 
                 TextField("Enter name", text: $userData.name)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .foregroundColor(Color("AppBlue"))
-                    
+                
             }
             .padding()
-                .padding(.bottom, keyboardHeight)
+            .padding(.bottom, keyboardHeight)
             .onReceive(Publishers.keyboardHeight) { self.keyboardHeight = $0 }
             
             Spacer()

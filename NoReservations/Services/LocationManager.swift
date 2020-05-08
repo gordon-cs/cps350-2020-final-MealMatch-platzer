@@ -13,15 +13,10 @@ import Combine
 
 class LocationManager: NSObject, ObservableObject {
     private let locationManager = CLLocationManager()
-//    private let dataProvider = GoogleDataProvider()
-//    @EnvironmentObject var userData: UserData
     
     @Published var status: CLAuthorizationStatus?
-    
     @Published var location: CLLocation?
-    
-//    @Published var places: [GooglePlace] = []
-    
+        
     override init() {
         super.init()
         

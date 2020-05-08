@@ -29,37 +29,37 @@
 import CoreLocation
 
 struct GooglePlace: Codable {
-  let name: String
-  let address: String
-  let types: [String]
-  
-  private let geometry: Geometry
-  var coordinate: CLLocationCoordinate2D {
-    return CLLocationCoordinate2D(latitude: geometry.location.lat, longitude: geometry.location.lng)
-  }
-
-  enum CodingKeys: String, CodingKey {
-    case name
-    case address = "vicinity"
-    case types
-    case geometry
-  }
+    let name: String
+    let address: String
+    let types: [String]
+    
+    private let geometry: Geometry
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: geometry.location.lat, longitude: geometry.location.lng)
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case address = "vicinity"
+        case types
+        case geometry
+    }
 }
 
 extension GooglePlace {
-  struct Response: Codable {
-    let results: [GooglePlace]
-    let errorMessage: String?
-  }
-  
-  private struct Geometry: Codable {
-    let location: Coordinate
-  }
-  
-  private struct Coordinate: Codable {
-    let lat: CLLocationDegrees
-    let lng: CLLocationDegrees
-  }
+    struct Response: Codable {
+        let results: [GooglePlace]
+        let errorMessage: String?
+    }
+    
+    private struct Geometry: Codable {
+        let location: Coordinate
+    }
+    
+    private struct Coordinate: Codable {
+        let lat: CLLocationDegrees
+        let lng: CLLocationDegrees
+    }
 }
 
 extension GooglePlace: Equatable {
@@ -69,9 +69,9 @@ extension GooglePlace: Equatable {
 }
 
 extension CLLocationCoordinate2D: CustomStringConvertible {
-  public var description: String {
-    let lat = String(format: "%.6f", latitude)
-    let lng = String(format: "%.6f", longitude)
-    return "\(lat),\(lng)"
-  }
+    public var description: String {
+        let lat = String(format: "%.6f", latitude)
+        let lng = String(format: "%.6f", longitude)
+        return "\(lat),\(lng)"
+    }
 }

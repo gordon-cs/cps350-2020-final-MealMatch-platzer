@@ -31,7 +31,6 @@ import SwiftUI
 import CoreLocation
 
 typealias PlacesCompletion = ([GooglePlace]) -> Void
-//typealias PhotoCompletion = (UIImage?) -> Void
 
 class GoogleDataProvider {
     private var photosDictionary: [String: UIImage] = [:]

@@ -18,12 +18,12 @@ struct TableHostView: View {
     var body: some View {
         VStack {
             Form{
-                Section {
-                    Text("Guests:")
+                Section(
+                    header: Text("Guests:")
                         .foregroundColor(Color("AppBlue"))
                         .font(.title)
                         .fontWeight(.bold)
-
+                ) {
                     InviteGuestsView()
                 }
                 
@@ -58,7 +58,7 @@ extension TableHostView: TableServiceDelegate {
     func receivedInvitation(manager: TableService, hostName: String, invitationHandler: @escaping (Bool, MCSession?) -> Void) { }
     
     func peerChangedState(manager: TableService, peerID: MCPeerID, state: MCSessionState) {
-
+        
     }
     
     mutating func placesReceived(manager: TableService, places: [GooglePlace]) {
