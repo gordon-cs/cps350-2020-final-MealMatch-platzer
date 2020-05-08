@@ -26,61 +26,63 @@ struct RestaurantCardView: View {
             .padding(10)
             .shadow(radius: 5)
             .cornerRadius(10)
-            .gesture(DragGesture()
-                
-            .onChanged({ (value) in
-                
-                if value.translation.width > 0{
-                    
-                    if value.translation.width > 30{
-                        self.drag = value.translation.width
-                        self.degree = 12
-                    }
-                    else{
-                        self.drag = value.translation.width
-                        self.degree = 0
-                    }
-                }
-                else{
-                    
-                    if value.translation.width < -30{
-                        self.drag = value.translation.width
-                        self.degree = -12
-                    }
-                    else{
-                        self.drag = value.translation.width
-                        self.degree = 0
-                    }
-                }
-                
-            }).onEnded({ (value) in
-                
-                if self.drag > 0{
-                    
-                    if self.drag > geo.size.width / 2 - 40{
-                        self.drag = 0
-                        self.degree = 0
-                        self.likePlaceCallback()
-                    }
-                    else{
-                        self.drag = 0
-                        self.degree = 0
-                    }
-                }
-                else{
-                    
-                    if -self.drag > geo.size.width / 2 - 40{
-                        self.drag = 0
-                        self.degree = 0
-                        self.dislikePlaceCallback()
-                    }
-                    else{
-                        self.drag = 0
-                        self.degree = 0
-                    }
-                }
-                
-            })
+                // Drag gesture behavior adapted from
+                // https://medium.com/better-programming/gestures-in-swiftui-e94b784ecc7
+                .gesture(
+                    DragGesture()
+                        .onChanged({ (value) in
+                            
+                            if value.translation.width > 0{
+                                
+                                if value.translation.width > 30{
+                                    self.drag = value.translation.width
+                                    self.degree = 12
+                                }
+                                else{
+                                    self.drag = value.translation.width
+                                    self.degree = 0
+                                }
+                            }
+                            else{
+                                
+                                if value.translation.width < -30{
+                                    self.drag = value.translation.width
+                                    self.degree = -12
+                                }
+                                else{
+                                    self.drag = value.translation.width
+                                    self.degree = 0
+                                }
+                            }
+                            
+                        }).onEnded({ (value) in
+                            
+                            if self.drag > 0{
+                                
+                                if self.drag > geo.size.width / 2 - 40{
+                                    self.drag = 0
+                                    self.degree = 0
+                                    self.likePlaceCallback()
+                                }
+                                else{
+                                    self.drag = 0
+                                    self.degree = 0
+                                }
+                            }
+                            else{
+                                
+                                if -self.drag > geo.size.width / 2 - 40{
+                                    self.drag = 0
+                                    self.degree = 0
+                                    self.dislikePlaceCallback()
+                                }
+                                else{
+                                    self.drag = 0
+                                    self.degree = 0
+                                }
+                            }
+                            
+                        })
             ).offset(x: self.drag)
                 .scaleEffect(abs(self.drag) > 100 ? 0.8 : 1)
                 .rotationEffect(.init(degrees:self.degree))
