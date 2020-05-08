@@ -3,19 +3,63 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A517A2FA245CF072004EEC26 /* TableData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A517A2F9245CF072004EEC26 /* TableData.swift */; };
+		A54CD33E2443F59E0098C4B9 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A54CD33D2443F59E0098C4B9 /* GoogleMapView.swift */; };
+		A55DEDE5244DF2040037B5D1 /* NavigationBarModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A55DEDE4244DF2040037B5D1 /* NavigationBarModifier.swift */; };
+		A57E7075244E5DA40062D02A /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57E7074244E5DA40062D02A /* KeyboardHeightPublisher.swift */; };
+		A57E7077244E981B0062D02A /* GooglePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57E7076244E981B0062D02A /* GooglePlace.swift */; };
+		A5802A14244933430079908A /* RestaurantMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A13244933430079908A /* RestaurantMapView.swift */; };
+		A5802A1624493A490079908A /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A1524493A490079908A /* ButtonView.swift */; };
+		A5802A1B2449431F0079908A /* TableHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5802A1A2449431F0079908A /* TableHostView.swift */; };
+		A59FD00624511847000230D6 /* SearchRadiusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FD00524511847000230D6 /* SearchRadiusView.swift */; };
+		A59FD00824511FB1000230D6 /* GoogleDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59FD00724511FB1000230D6 /* GoogleDataProvider.swift */; };
+		A5A70D7A24571B6B00870904 /* BottomBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A70D7924571B6B00870904 /* BottomBarView.swift */; };
+		A5BFAA592451E2B700EB89D7 /* ChooseRestaurantsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFAA582451E2B700EB89D7 /* ChooseRestaurantsView.swift */; };
+		A5BFAA5B2451E76500EB89D7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BFAA5A2451E76500EB89D7 /* LocationManager.swift */; };
+		A5C721302443DC3700FA3015 /* RestaurantImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C7212F2443DC3700FA3015 /* RestaurantImageView.swift */; };
+		A5C721322443DF7B00FA3015 /* RestaurantInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C721312443DF7B00FA3015 /* RestaurantInfoView.swift */; };
+		A5C721342443E0ED00FA3015 /* RestaurantCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5C721332443E0ED00FA3015 /* RestaurantCardView.swift */; };
 		A5E693A224439611004B9604 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E693A124439611004B9604 /* AppDelegate.swift */; };
 		A5E693A424439611004B9604 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E693A324439611004B9604 /* SceneDelegate.swift */; };
 		A5E693A624439611004B9604 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E693A524439611004B9604 /* ContentView.swift */; };
 		A5E693A824439613004B9604 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E693A724439613004B9604 /* Assets.xcassets */; };
 		A5E693AB24439613004B9604 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5E693AA24439613004B9604 /* Preview Assets.xcassets */; };
 		A5E693AE24439613004B9604 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5E693AC24439613004B9604 /* LaunchScreen.storyboard */; };
+		A5F6646F245FA7F300B90E06 /* RecommendedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6646E245FA7F300B90E06 /* RecommendedView.swift */; };
+		A5FFE411244B54CD005355EC /* MainMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE410244B54CD005355EC /* MainMenuView.swift */; };
+		A5FFE413244B560C005355EC /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE412244B560C005355EC /* UserData.swift */; };
+		A5FFE416244B9C74005355EC /* TableService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE415244B9C74005355EC /* TableService.swift */; };
+		A5FFE418244BCB4B005355EC /* TableGuestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE417244BCB4B005355EC /* TableGuestView.swift */; };
+		A5FFE41C244BDB6B005355EC /* InviteGuestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE41B244BDB6B005355EC /* InviteGuestsView.swift */; };
+		A5FFE420244BE175005355EC /* JoinTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE41F244BE175005355EC /* JoinTableView.swift */; };
+		A5FFE427244BE676005355EC /* GuestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5FFE426244BE676005355EC /* GuestData.swift */; };
+		B2812A911D15102CA448CB5A /* libPods-NoReservations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38D0D56E1BC2FAB6453A451C /* libPods-NoReservations.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		38D0D56E1BC2FAB6453A451C /* libPods-NoReservations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NoReservations.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7671EE79DEE496FCBB1F89A3 /* Pods-NoReservations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoReservations.release.xcconfig"; path = "Target Support Files/Pods-NoReservations/Pods-NoReservations.release.xcconfig"; sourceTree = "<group>"; };
+		83A0F0CC98C70890152507A7 /* Pods-NoReservations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoReservations.debug.xcconfig"; path = "Target Support Files/Pods-NoReservations/Pods-NoReservations.debug.xcconfig"; sourceTree = "<group>"; };
+		A517A2F9245CF072004EEC26 /* TableData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableData.swift; sourceTree = "<group>"; };
+		A54CD33D2443F59E0098C4B9 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		A55DEDE4244DF2040037B5D1 /* NavigationBarModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarModifier.swift; sourceTree = "<group>"; };
+		A57E7074244E5DA40062D02A /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
+		A57E7076244E981B0062D02A /* GooglePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlace.swift; sourceTree = "<group>"; };
+		A5802A13244933430079908A /* RestaurantMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMapView.swift; sourceTree = "<group>"; };
+		A5802A1524493A490079908A /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		A5802A1A2449431F0079908A /* TableHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHostView.swift; sourceTree = "<group>"; };
+		A59FD00524511847000230D6 /* SearchRadiusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRadiusView.swift; sourceTree = "<group>"; };
+		A59FD00724511FB1000230D6 /* GoogleDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDataProvider.swift; sourceTree = "<group>"; };
+		A5A70D7924571B6B00870904 /* BottomBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBarView.swift; sourceTree = "<group>"; };
+		A5BFAA582451E2B700EB89D7 /* ChooseRestaurantsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseRestaurantsView.swift; sourceTree = "<group>"; };
+		A5BFAA5A2451E76500EB89D7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		A5C7212F2443DC3700FA3015 /* RestaurantImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageView.swift; sourceTree = "<group>"; };
+		A5C721312443DF7B00FA3015 /* RestaurantInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoView.swift; sourceTree = "<group>"; };
+		A5C721332443E0ED00FA3015 /* RestaurantCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCardView.swift; sourceTree = "<group>"; };
 		A5E6939E24439611004B9604 /* NoReservations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NoReservations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5E693A124439611004B9604 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5E693A324439611004B9604 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +68,14 @@
 		A5E693AA24439613004B9604 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5E693AD24439613004B9604 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5E693AF24439613004B9604 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5F6646E245FA7F300B90E06 /* RecommendedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedView.swift; sourceTree = "<group>"; };
+		A5FFE410244B54CD005355EC /* MainMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuView.swift; sourceTree = "<group>"; };
+		A5FFE412244B560C005355EC /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		A5FFE415244B9C74005355EC /* TableService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableService.swift; sourceTree = "<group>"; };
+		A5FFE417244BCB4B005355EC /* TableGuestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableGuestView.swift; sourceTree = "<group>"; };
+		A5FFE41B244BDB6B005355EC /* InviteGuestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteGuestsView.swift; sourceTree = "<group>"; };
+		A5FFE41F244BE175005355EC /* JoinTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinTableView.swift; sourceTree = "<group>"; };
+		A5FFE426244BE676005355EC /* GuestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2812A911D15102CA448CB5A /* libPods-NoReservations.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +95,8 @@
 			children = (
 				A5E693A024439611004B9604 /* NoReservations */,
 				A5E6939F24439611004B9604 /* Products */,
+				C52CB5649312D2D881158596 /* Pods */,
+				D46AB02874DFD58B4ADF6A06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,6 +114,9 @@
 				A5E693A124439611004B9604 /* AppDelegate.swift */,
 				A5E693A324439611004B9604 /* SceneDelegate.swift */,
 				A5E693A524439611004B9604 /* ContentView.swift */,
+				A5FFE425244BE624005355EC /* Services */,
+				A5FFE421244BE5C8005355EC /* Models */,
+				A5FFE422244BE5D4005355EC /* Views */,
 				A5E693A724439613004B9604 /* Assets.xcassets */,
 				A5E693AC24439613004B9604 /* LaunchScreen.storyboard */,
 				A5E693AF24439613004B9604 /* Info.plist */,
@@ -75,6 +133,92 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A5E693B52443B055004B9604 /* Restaurant Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5802A13244933430079908A /* RestaurantMapView.swift */,
+				A5C721312443DF7B00FA3015 /* RestaurantInfoView.swift */,
+				A5C721332443E0ED00FA3015 /* RestaurantCardView.swift */,
+				A5BFAA582451E2B700EB89D7 /* ChooseRestaurantsView.swift */,
+				A5F6646E245FA7F300B90E06 /* RecommendedView.swift */,
+			);
+			path = "Restaurant Views";
+			sourceTree = "<group>";
+		};
+		A5FFE414244B5825005355EC /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				A54CD33D2443F59E0098C4B9 /* GoogleMapView.swift */,
+				A5802A1524493A490079908A /* ButtonView.swift */,
+				A55DEDE4244DF2040037B5D1 /* NavigationBarModifier.swift */,
+				A57E7074244E5DA40062D02A /* KeyboardHeightPublisher.swift */,
+				A5A70D7924571B6B00870904 /* BottomBarView.swift */,
+			);
+			path = "Supporting Views";
+			sourceTree = "<group>";
+		};
+		A5FFE421244BE5C8005355EC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5FFE412244B560C005355EC /* UserData.swift */,
+				A5FFE426244BE676005355EC /* GuestData.swift */,
+				A57E7076244E981B0062D02A /* GooglePlace.swift */,
+				A517A2F9245CF072004EEC26 /* TableData.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A5FFE422244BE5D4005355EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5FFE410244B54CD005355EC /* MainMenuView.swift */,
+				A5E693B52443B055004B9604 /* Restaurant Views */,
+				A5FFE424244BE5FE005355EC /* Table Views */,
+				A5FFE414244B5825005355EC /* Supporting Views */,
+				A5C7212F2443DC3700FA3015 /* RestaurantImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A5FFE424244BE5FE005355EC /* Table Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5802A1A2449431F0079908A /* TableHostView.swift */,
+				A59FD00524511847000230D6 /* SearchRadiusView.swift */,
+				A5FFE41B244BDB6B005355EC /* InviteGuestsView.swift */,
+				A5FFE41F244BE175005355EC /* JoinTableView.swift */,
+				A5FFE417244BCB4B005355EC /* TableGuestView.swift */,
+			);
+			path = "Table Views";
+			sourceTree = "<group>";
+		};
+		A5FFE425244BE624005355EC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A5FFE415244B9C74005355EC /* TableService.swift */,
+				A59FD00724511FB1000230D6 /* GoogleDataProvider.swift */,
+				A5BFAA5A2451E76500EB89D7 /* LocationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C52CB5649312D2D881158596 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83A0F0CC98C70890152507A7 /* Pods-NoReservations.debug.xcconfig */,
+				7671EE79DEE496FCBB1F89A3 /* Pods-NoReservations.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D46AB02874DFD58B4ADF6A06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38D0D56E1BC2FAB6453A451C /* libPods-NoReservations.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -82,9 +226,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A5E693B224439613004B9604 /* Build configuration list for PBXNativeTarget "NoReservations" */;
 			buildPhases = (
+				0F9F190462E230836DD75B78 /* [CP] Check Pods Manifest.lock */,
 				A5E6939A24439611004B9604 /* Sources */,
 				A5E6939B24439611004B9604 /* Frameworks */,
 				A5E6939C24439611004B9604 /* Resources */,
+				15FEF3E2F4C09C9338724A1A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -141,14 +287,80 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0F9F190462E230836DD75B78 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-NoReservations-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		15FEF3E2F4C09C9338724A1A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NoReservations/Pods-NoReservations-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-NoReservations/Pods-NoReservations-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-NoReservations/Pods-NoReservations-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A5E6939A24439611004B9604 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F6646F245FA7F300B90E06 /* RecommendedView.swift in Sources */,
+				A59FD00624511847000230D6 /* SearchRadiusView.swift in Sources */,
 				A5E693A224439611004B9604 /* AppDelegate.swift in Sources */,
 				A5E693A424439611004B9604 /* SceneDelegate.swift in Sources */,
+				A5A70D7A24571B6B00870904 /* BottomBarView.swift in Sources */,
+				A57E7077244E981B0062D02A /* GooglePlace.swift in Sources */,
+				A55DEDE5244DF2040037B5D1 /* NavigationBarModifier.swift in Sources */,
+				A5FFE416244B9C74005355EC /* TableService.swift in Sources */,
+				A5FFE413244B560C005355EC /* UserData.swift in Sources */,
 				A5E693A624439611004B9604 /* ContentView.swift in Sources */,
+				A57E7075244E5DA40062D02A /* KeyboardHeightPublisher.swift in Sources */,
+				A5C721322443DF7B00FA3015 /* RestaurantInfoView.swift in Sources */,
+				A5802A14244933430079908A /* RestaurantMapView.swift in Sources */,
+				A54CD33E2443F59E0098C4B9 /* GoogleMapView.swift in Sources */,
+				A59FD00824511FB1000230D6 /* GoogleDataProvider.swift in Sources */,
+				A5BFAA592451E2B700EB89D7 /* ChooseRestaurantsView.swift in Sources */,
+				A5FFE420244BE175005355EC /* JoinTableView.swift in Sources */,
+				A5FFE427244BE676005355EC /* GuestData.swift in Sources */,
+				A5FFE418244BCB4B005355EC /* TableGuestView.swift in Sources */,
+				A5FFE41C244BDB6B005355EC /* InviteGuestsView.swift in Sources */,
+				A5802A1B2449431F0079908A /* TableHostView.swift in Sources */,
+				A5C721302443DC3700FA3015 /* RestaurantImageView.swift in Sources */,
+				A517A2FA245CF072004EEC26 /* TableData.swift in Sources */,
+				A5BFAA5B2451E76500EB89D7 /* LocationManager.swift in Sources */,
+				A5FFE411244B54CD005355EC /* MainMenuView.swift in Sources */,
+				A5C721342443E0ED00FA3015 /* RestaurantCardView.swift in Sources */,
+				A5802A1624493A490079908A /* ButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +494,7 @@
 		};
 		A5E693B324439613004B9604 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83A0F0CC98C70890152507A7 /* Pods-NoReservations.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -302,6 +515,7 @@
 		};
 		A5E693B424439613004B9604 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7671EE79DEE496FCBB1F89A3 /* Pods-NoReservations.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

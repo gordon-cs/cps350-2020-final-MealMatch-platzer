@@ -8,9 +8,13 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct ContentView: View {    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            MainMenuView()
+            
+        }
+        .navigationBarColor(UIColor(named: "AppBlue"))
     }
 }
 
